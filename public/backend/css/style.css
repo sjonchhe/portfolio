@@ -1,0 +1,97 @@
+*{
+  //background:url('public/backend/img/sidebar-1.jpg') !important;
+  //color:black !important;
+  //background:rgba(0,0,0,0.6);
+}
+input
+{
+  color:black;
+}
+.red
+{
+  background:red;
+}
+.white
+{
+  background:white;
+}
+.blue{
+  background:blue;
+}
+.text-white
+{
+  color:white;
+}
+.card
+{
+  padding:15px;
+}
+.bg-official
+{
+  background: linear-gradient(20deg, #20E873, teal);
+}
+.bg-transparent
+{
+  background:rgba(0,0,0,0.2) !important;
+}
+.bg-stransparent
+{
+  background:rgba(0,0,0,0.9) !important;
+}
+.btn .btn-primary
+{
+  //background: linear-gradient(20deg, teal, #20E873);
+  border-color:teal;
+  background:rgba(0,0,0,0.6) !important;
+}
+
+.btn .btn-primary:hover
+{
+  background:red;
+
+}
+.side-wrapper .nav-item .active
+{
+  background: linear-gradient(20deg, teal, #20E873);
+  border-color:teal;
+}
+
+#skilltable tr,#projecttable tr,#admintable tr
+{
+  background:rgba(0,0,0,0);
+  color:white !important;
+}
+.table-official tr
+{
+  background:rgba(0,0,0,0);
+  color:white !important;
+}
+#modaltitle
+{
+  //background: linear-gradient(20deg, teal, #20E873);
+}
+.btn-radius
+{
+  border-radius:20px;
+}
+.bg-dark
+{
+background:rgba(0,0,0,0.95) !important;
+}
+.sidebar[data-color="official"] li.active>a {
+  background: linear-gradient(180deg, #20E873, teal); !important;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 0,0, 0.4);
+}
+.card
+{
+background:rgba(0,0,0,0.8) !important;
+}
+
+.card-header
+{
+  //background:linear-gradient(180deg, #20E873, teal); !important;
+  //box-shadow:0px 2px 2px teal;
+ //background:rgba(255,255,255,0.5) !important;
+  color:black !important;
+
+}
