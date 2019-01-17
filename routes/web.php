@@ -35,6 +35,8 @@ Route::post('image-submit','admin\ProjectController@imagestore');
 Route::resource('adminlist','admin\AdminController');
 Route::get('getadmin','admin\AdminController@getAdmins')->name('get.admins');
 
+Route::resource('permission','admin\PermissionController');
+
 Route::resource('message','admin\MessageController');
 Route::resource('blog','admin\BlogController');
 Route::resource('dashboard','admin\IndexController');

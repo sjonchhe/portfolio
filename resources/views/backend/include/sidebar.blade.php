@@ -19,16 +19,30 @@
       </li>
       <li class="nav-item {{Request::is('admin/portfolio')? "active":" "}} ">
         <a class="nav-link" href="/admin/portfolio">
-          <i class="material-icons">person</i>
+          <i class="material-icons">account_box</i>
           <p>Portfolio</p>
         </a>
       </li>
-      <li class="nav-item {{Request::is('admin/adminlist')? "active": ""}} ">
+      {{-- <li class="nav-item {{Request::is('admin/adminlist')? "active": ""}} ">
         <a class="nav-link" href="/admin/adminlist">
           <i class="material-icons">people</i>
           <p>User/Admin List</p>
         </a>
-      </li>
+      </li> --}}
+      <li class="nav-item text-white {{Request::is('admin/adminlist','admin/permission')? "active": ""}}">
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="material-icons">people</i>
+                  <p class="d-inline">Admins</p></a>
+                <ul class="collapse list-unstyled" id="pageSubmenu" >
+                    <li class="nav-item ml-4 mt-1 {{Request::is('admin/adminlist')? "active": ""}}">
+                        <a class="nav-link" href="/admin/adminlist">  <i class="material-icons">recent_actors</i>Admin List</a>
+                    </li>
+                    <li class="nav-item ml-4 {{Request::is('admin/permission')? "active" : ""}}">
+                        <a class="nav-link" href="/admin/permission">  <i class="material-icons">lock_open</i>Roles & Permissions</a>
+                    </li>
+
+                </ul>
+            </li>
 
       <li class="nav-item {{Request::is('admin/skill')? "active": ""}} ">
         <a class="nav-link" href="/admin/skill">
