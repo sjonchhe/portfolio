@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Model\Project;
 use App\Model\Skill;
 use App\Model\Portfolio;
+use Harimayco\Menu\Facades\Menu;
+use Harimayco\Menu\Models\Menus;
+use Harimayco\Menu\Models\MenuItems;
+// use App\Menu;
 
 class IndexController extends Controller
 {
@@ -22,7 +26,11 @@ class IndexController extends Controller
         return view('backend.pages.dashboard')->withskillcount($skillc)
                                               ->withprojectcount($projectc);
     }
-
+    public function menu()
+    {
+      $menuList = Menu::get(1);
+      return view('backend.menus.menuindex')->withmenulist($menuList);
+    }
     /**
      * Show the form for creating a new resource.
      *
