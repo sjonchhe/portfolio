@@ -21,7 +21,13 @@ Route::get('/', 'HomeController@index')->name('home');
 
 
 // Route::group(['prefix'=>'admin'],function(){
-  Route::prefix('admin')->middleware('role:superadministrator|administrator|editor|subscriber')->group(function(){
+  // Route::prefix('admin')->middleware('role:superadministrator|administrator|editor|subscriber')->group(function(){
+  Route::group( [
+           'prefix'     => 'admin',
+           // 'as'         => 'dashboard.',
+           // 'namespace'  => 'Backend',
+           'middleware' => 'role:superadministrator|administrator|editor|subscriber'
+       ], function () {
 
 Route::resource('skill','admin\SkillController');
 Route::get('getskill','admin\SkillController@getSkills')->name('get.skills');
@@ -36,6 +42,7 @@ Route::resource('adminlist','admin\AdminController');
 Route::get('getadmin','admin\AdminController@getAdmins')->name('get.admins');
 
 Route::resource('permission','admin\PermissionController');
+Route::resource('role','admin\RoleController');
 
 Route::resource('message','admin\MessageController');
 Route::resource('blog','admin\BlogController');

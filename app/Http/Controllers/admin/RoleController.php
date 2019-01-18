@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Role;
 
 class RoleController extends Controller
 {
@@ -14,7 +15,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $role=Role::latest('id')->get();
+        return view('backend.manage.role')->withrole($role);
     }
 
     /**
@@ -35,7 +37,16 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+
+        ]);
+        $role=new Role();
+        $role->name=$request->name;
+        $role->display_name=$request->display_name;
+        $role->description=$request->description;
+        $role->save();
+        $output="inserted";
+        return compact('output');
     }
 
     /**
@@ -80,6 +91,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role=Role::find($id);
+        $role->delete();
+        $output="deleted";
+        return compact('output');
     }
 }

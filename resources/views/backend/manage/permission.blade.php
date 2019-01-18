@@ -10,8 +10,8 @@
   </button>
       <div class="card" >
         <div class="card-header card-header-primary text-white"  >
-          <h4 class="card-title ">Roles and Permission</h4>
-          <p class="card-category text-white"> List of all the Roles & Permissions</p>
+          <h4 class="card-title ">Permissions</h4>
+          <p class="card-category text-white"> List of all Permissions</p>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -62,7 +62,7 @@
   </div>
 
 
-   <!-- Modal for adding new admin -->
+   <!-- Modal for adding new permission -->
 
 
       <div class="modal fade bd-example-modal-lg " id="permissionmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

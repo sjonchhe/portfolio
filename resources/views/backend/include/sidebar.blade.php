@@ -29,7 +29,7 @@
           <p>User/Admin List</p>
         </a>
       </li> --}}
-      <li class="nav-item text-white {{Request::is('admin/adminlist','admin/permission')? "active": ""}}">
+      <li class="nav-item text-white {{Request::is('admin/adminlist','admin/permission','admin/role')? "active": ""}}">
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="material-icons">people</i>
                   <p class="d-inline">Admins</p></a>
@@ -37,8 +37,11 @@
                     <li class="nav-item ml-4 mt-1 {{Request::is('admin/adminlist')? "active": ""}}">
                         <a class="nav-link" href="/admin/adminlist">  <i class="material-icons">recent_actors</i>Admin List</a>
                     </li>
+                    <li class="nav-item ml-4 {{Request::is('admin/role')? "active" : ""}}">
+                        <a class="nav-link" href="/admin/role">  <i class="material-icons">lock_open</i>Roles </a>
+                    </li>
                     <li class="nav-item ml-4 {{Request::is('admin/permission')? "active" : ""}}">
-                        <a class="nav-link" href="/admin/permission">  <i class="material-icons">lock_open</i>Roles & Permissions</a>
+                        <a class="nav-link" href="/admin/permission">  <i class="material-icons">offline_pin</i>Permissions</a>
                     </li>
 
                 </ul>
