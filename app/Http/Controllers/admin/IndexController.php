@@ -10,7 +10,7 @@ use App\Model\Portfolio;
 use Harimayco\Menu\Facades\Menu;
 use Harimayco\Menu\Models\Menus;
 use Harimayco\Menu\Models\MenuItems;
-// use App\Menu;
+
 
 class IndexController extends Controller
 {
@@ -28,7 +28,7 @@ class IndexController extends Controller
     }
     public function menu()
     {
-      $menuList = Menu::get(1);
+      $menuList = Menus::get(1);
       return view('backend.menus.menuindex')->withmenulist($menuList);
     }
     /**

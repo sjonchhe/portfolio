@@ -26,27 +26,27 @@ Route::get('/', 'HomeController@index')->name('home');
     Route::group( [
             'prefix'     => 'admin',
             // 'as'         => 'dashboard.',
-            // 'namespace'  => 'Backend',
+            'namespace'  => 'admin',
             'middleware' => 'role:superadministrator|administrator|editor|subscriber'
         ], function () {
-          
-Route::resource('skill','admin\SkillController');
-Route::get('getskill','admin\SkillController@getSkills')->name('get.skills');
-//Route::post('deleteskill/{id}','admin\SkillController@destroy');
-Route::resource('portfolio','admin\PortfolioController');
-Route::resource('project','admin\ProjectController');
-Route::get('getproject','admin\ProjectController@getProjects')->name('get.projects');
-Route::get('project/view/{id}','admin\ProjectController@show');
-Route::post('image-submit','admin\ProjectController@imagestore');
 
-Route::resource('adminlist','admin\AdminController');
-Route::get('getadmin','admin\AdminController@getAdmins')->name('get.admins');
+Route::resource('skill','SkillController');
+Route::get('getskill','SkillController@getSkills')->name('get.skills');
+//Route::post('deleteskill/{id}','SkillController@destroy');
+Route::resource('portfolio','PortfolioController');
+Route::resource('project','ProjectController');
+Route::get('getproject','ProjectController@getProjects')->name('get.projects');
+Route::get('project/view/{id}','ProjectController@show');
+Route::post('image-submit','ProjectController@imagestore');
 
-Route::resource('permission','admin\PermissionController');
+Route::resource('adminlist','AdminController');
+Route::get('getadmin','AdminController@getAdmins')->name('get.admins');
 
-Route::resource('role','admin\RoleController');
-Route::resource('message','admin\MessageController');
-Route::resource('blog','admin\BlogController');
-Route::resource('dashboard','admin\IndexController');
-Route::get('menu','admin\IndexController@menu');
+Route::resource('permission','PermissionController');
+
+Route::resource('role','RoleController');
+Route::resource('message','MessageController');
+Route::resource('blog','BlogController');
+Route::resource('dashboard','IndexController');
+Route::get('menu','MenuController@render');
 });
