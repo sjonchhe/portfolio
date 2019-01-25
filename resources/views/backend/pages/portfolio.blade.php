@@ -8,7 +8,7 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header card-header-primary" id="portfoliodiv">
-          <h4 class="card-title">Edit Profile</h4>
+          <h4 class="card-title">Edit Profile @role('editor') <span class="text-danger">*You donot have permission to edit this</span> @endrole</h4>
           <p class="card-category">Complete your profile</p>
         </div>
         @foreach($portfolio as $data)
@@ -136,9 +136,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
         {{-- <script type="text/javascript" src="{{asset('js/parsley.min.js')}}"></script> --}}
-        {{-- <script type="text/javascript">
+        <script type="text/javascript">
             CKEDITOR.replace( 'about' );
-            </script> --}}
+            </script>
       <script type="text/javascript">
 
  // $(document).on('submit','#portfolioform',function(e){
@@ -176,7 +176,7 @@ function Portfoliofunctionforall(id,route,formData,div)
       if(data.output=='updated')
       {
         alert('success');
-            $('#portfoliodiv').load(location.href + ' #portfoliodiv');
+            $('#portfoliodiv').load(location.href+'#portfoliodiv');
             //location.reload();
 
       //toastr.success('Portfolio Updated!!','Successfully Updated',{timeOut:5000});

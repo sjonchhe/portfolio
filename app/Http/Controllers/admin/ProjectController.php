@@ -34,10 +34,13 @@ class ProjectController extends Controller
       ->addColumn('view',function($project){
         return '<a href="/admin/project/view/'.$project->id.'"><button class="btn btn-sm btn-primary viewproject">View</button></a>';
       })
+    ->addColumn('delete',function($project){
+        return '<button class="btn btn-sm btn-danger deleteproject" data-id="'.$project->id.'">Delete</button>';
+      })
       ->addColumn('views',function($project){
         return '<span class="badge badge-pill badge-light">'.$project->views.'</span>';
       })
-      ->rawColumns(['link','view','views'])
+      ->rawColumns(['link','view','views','delete'])
       ->make(true);
       }
 
@@ -215,6 +218,11 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project=Project::find($id);
+        $project-> delete();
+        
+        $output="deleted";
+        return compact('output');
     }
+
 }

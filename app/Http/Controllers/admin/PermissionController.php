@@ -13,6 +13,11 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+    {
+        $this->middleware('role:superadministrator');
+    }
     public function index()
     {
         $permission=Permission::orderBy('id','desc')->get();

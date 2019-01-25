@@ -5,7 +5,8 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Role;
-
+use App\Permission;
+use Illuminate\Support\Facades\DB;
 class RoleController extends Controller
 {
     /**
@@ -13,10 +14,16 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+    {
+        $this->middleware('role:superadministrator|administrator');
+    }
     public function index()
     {
-        $role=Role::latest('id')->get();
-        return view('backend.manage.role')->withrole($role);
+        $permission=Permission::all();
+        $role=Role::orderBy('id','desc')->get();
+        return view('backend.manage.role')->withrole($role)->withpermission($permission);
     }
 
     /**
@@ -40,11 +47,18 @@ class RoleController extends Controller
         $this->validate($request,[
 
         ]);
+        /*return $request->permission;
+        dd;*/
         $role=new Role();
         $role->name=$request->name;
         $role->display_name=$request->display_name;
         $role->description=$request->description;
         $role->save();
+
+        foreach($request->permission as $key=>$value)
+        {
+            $role->attachPermission($value);
+        }
         $output="inserted";
         return compact('output');
     }
@@ -57,7 +71,10 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $permission = Permission::all();
+        $role=Role::find($id);
+        $role_permission = $role->permissions->pluck('id','id')->toArray();
+        return view('backend.manage.editrole')->withrole($role)->withpermission($permission)->withroleperm($role_permission);
     }
 
     /**
@@ -80,7 +97,22 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $role=Role::find($id);
+        $role->name = $request->name;
+        $role->display_name = $request->display_name;
+        $role->description = $request->description;
+        $role->save();
+
+        DB::table('permission_role')->where('role_id',$id)->delete();
+        foreach($request->permission as $key=>$value)
+        {
+            $role->attachPermission($value);
+        }
+        $output="Updated";
+        //return view('backend.manage.editrole');
+        //notificationMsg('success','Successfully Updated!');
+        return back()->withoutput($output);
     }
 
     /**

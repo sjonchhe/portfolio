@@ -40,7 +40,7 @@
             </div>
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
+                <div class="card-header card-header-secondary card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">send</i>
                   </div>
@@ -57,11 +57,11 @@
 
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
+                <div class="card-header card-header-primary card-header-icon">
                   <div class="card-icon">
-                    <i class="fa fa-youtube"></i>
+                   <i class="material-icons">feedback</i>
                   </div>
-                  <p class="card-category">Videos</p>
+                  <p class="card-category">Testimonial</p>
                   <h3 class="card-title">15</h3>
                 </div>
                 <div class="card-footer">
@@ -71,8 +71,58 @@
                 </div>
               </div>
             </div>
+             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                     <i class="material-icons">border_color</i>               
+                 </div>
+                  <p class="card-category">Blogs</p>
+                  <h3 class="card-title">15</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">remove_red_eye</i> All time
+                  </div>
+                </div>
+              </div>
+            </div>
+            @role('superadministrator|administrator')
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">people</i>
+                  </div>
+                  <p class="card-category">Admins</p>
+                  <h3 class="card-title">{{$usercount}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">lock_open</i>
+                  </div>
+                  <p class="card-category">Roles</p>
+                  <h3 class="card-title">{{$rolecount}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endrole
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-xl-4 col-lg-12">
               <div class="card card-chart">
                 {{-- <div class="card-header card-header-success">
@@ -122,47 +172,29 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col-lg-6 col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Employees Stats</h4>
-                  <p class="card-category">New employees on 15th September, 2016</p>
+                  <h4 class="card-title">Project Stats</h4>
+                  <p class="card-category">Latest Projects</p>
                 </div>
                 <div class="card-body table-responsive">
                   <table class="table table-hover">
                     <thead class="text-warning">
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Salary</th>
-                      <th>Country</th>
+                      <th>Project Name</th>
+                      <th>Client</th>
+                      <th>Views</th>
                     </thead>
                     <tbody>
+                      @foreach($projects as $projects)
                       <tr>
-                        <td>1</td>
-                        <td>Dakota Rice</td>
-                        <td>$36,738</td>
-                        <td>Niger</td>
+                        <td>{{$projects->title}}</td>
+                        <td>{{$projects->client}}</td>
+                        <td class="text-center"><span class="badge badge-pill badge-light">{{$projects->views}}</span></td>
                       </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Minerva Hooper</td>
-                        <td>$23,789</td>
-                        <td>Curaçao</td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Sage Rodriguez</td>
-                        <td>$56,142</td>
-                        <td>Netherlands</td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Philip Chaney</td>
-                        <td>$38,735</td>
-                        <td>Korea, South</td>
-                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

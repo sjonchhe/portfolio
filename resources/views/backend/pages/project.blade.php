@@ -3,8 +3,6 @@
 @extends('backend.index')
 @section('main-content')
 
-
-
   <div class="row">
     <div class="col-md-12">
       <!-- Button trigger modal -->
@@ -27,6 +25,7 @@
                 <th>Contribution</th>
                 <th>Link</th>
                 <th>Views</th>
+                <th></th>
                 <th></th>
 
                 {{-- <th>Action</th> --}}
@@ -161,7 +160,8 @@
         {'data': 'contribution'},
         {'data': 'link'},
         {'data': 'views'},
-        {'data':'view'}
+        {'data':'view'},
+        {'data':'delete'}
 
 
 
@@ -217,6 +217,34 @@
 
           })
         };
+
+    $(document).on('click','.deleteproject',function(e){
+     e.preventDefault();
+     var id=$(this).data(id);
+     var route='project/'+id;
+     var table='#projecttable';
+     var token='{{csrf_token()}}';
+     deleteproject(id,route,table,token);
+    });
+
+    function deleteproject(id,route,table,token)
+    {
+      $.ajax({
+      url:route,
+      method:'Delete',
+      data:{'_token':token},
+      dataType:'json',
+      success:function(data){
+        console.log(data);
+          if(data.output=="deleted")
+       {
+         toastr.success('Skill has been deleted!!', 'Successfully Deleted!', {timeOut: 5000})
+         $(table).DataTable().ajax.reload();
+       }
+
+      }
+    });
+    }
 
   </script>
 

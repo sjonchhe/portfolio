@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Model\Project;
 use App\Model\Skill;
 use App\Model\Portfolio;
+use App\User;
+use App\Role;
 
 class IndexController extends Controller
 {
@@ -19,8 +21,14 @@ class IndexController extends Controller
     {
         $skillc=Skill::count();
         $projectc=Project::count();
+        $userc=User::count();
+        $rolec=Role::count();
+        $projects=Project::latest('id')->limit(5)->get();
         return view('backend.pages.dashboard')->withskillcount($skillc)
-                                              ->withprojectcount($projectc);
+                                              ->withprojectcount($projectc)
+                                              ->withusercount($userc)
+                                              ->withrolecount($rolec)
+                                              ->withprojects($projects);
     }
 
     /**

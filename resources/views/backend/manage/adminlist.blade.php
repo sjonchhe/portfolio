@@ -26,11 +26,13 @@
                 <th>
                   Email
                 </th>
+                <th>Role</th>
                 <th>
                   Created At
                 </th>
+               
                 <th>
-                    Updated At
+                  Action
                 </th>
               </tr>
               {{-- @foreach($user as $user)
@@ -80,6 +82,16 @@
                   <input type="password" class="form-control" data-parsley-maxlength="100" id="password" placeholder="Password" name="password" onkeyup="clearerror('passworderror')">
                   <span class="text-danger" id="passworderror"></span>
                 </div>
+                 <div class="form-group">
+                  <label>User Role</label>
+                  <select class="form-control" name="role" id="role" style="background:black;color:white;" required>
+                    <option>---Select a Role--- </option>
+                  @foreach($role as $role)
+                  <option value="{{$role->id}}">{{$role->name}}</option>
+                  <span class="text-danger" id="passworderror"></span>
+                  @endforeach
+                </select>
+                </div>
 
               </div>
               <div class="modal-footer">
@@ -108,8 +120,9 @@ $(document).ready(function () {
       {'data' : 'id'},
       {'data' : 'name'},
       {'data' : 'email'},
+      {'data' : 'role'},
       {'data' : 'created_at'},
-      {'data' : 'updated_at'}
+      {'data' : 'delete'}
     ]
   });
 });
@@ -162,6 +175,40 @@ $.ajax({
   //console.log(xhr.responseText);
 }
 });
+}
+
+
+$(document).on('click','.deleteadmin',function(e){
+  e.preventDefault();
+  var id=$(this).data('id');
+  var route='adminlist/'+id;
+  var table='#admintable';
+  var token='{{csrf_token()}}';
+  deletefunction(id,route,table,token)
+
+})
+
+function deletefunction(id,route,table,token)
+{
+  $.ajax({
+    url: route,
+    method:'Delete',
+    dataType: 'json',
+    data: {'_token': token},
+    success:function(data){
+      console.log(data);
+       if(data.output=='deleted')
+      {
+        // alert('deleted');
+         $(table).DataTable().ajax.reload();
+        toastr.success('Admin/User has been deleted!!','Successfully deleted',{timeOut:5000});
+      }
+
+    }
+  });
+
+  
+
 }
 
 

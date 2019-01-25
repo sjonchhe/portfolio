@@ -50,8 +50,8 @@
                   <td>{{$role->created_at}}</td>
                   <td>{{$role->updated_at}}</td>
                   <td>
-                    <button class="btn btn-sm btn-info " id="editpermission"><a href="{{route('role.show')}}">View/Edit</a></button>
-                      <button class="btn btn-sm btn-danger deleterole" data-id="{{$role->id}}"  >Delete</button>
+                    <a href="{{route('role.show',$role->id)}}"><button class="btn btn-sm btn-info " id="editpermission">View/Edit</button></a>
+                      <button class="btn btn-sm btn-danger deleterole" data-id="{{$role->id}}" onClick="confirm('Are you sure you want to delete?')" >Delete</button>
                   </td>
                 </tr>
               @endforeach
@@ -80,26 +80,41 @@
          <form id="roleform" action="#" method="POST" >
                 {{ csrf_field() }}
                 <input type="hidden" id="newid" name="newid">
-                <div class="form-group">
+                <div class="form-row">
+
+                <div class="form-group col-md-5">
                   <label>Role name</label><br>
-                  <input type="text" class="form-control" data-parsley-maxlength="100" id="name" placeholder="Role Name" name="name">
+                  <input type="text" class="form-control" data-parsley-maxlength="100" id="name" placeholder="Name of Role" name="name">
                   <span class="text-danger" id="namerror"></span>
 
-                </div><br>
-                <div class="form-group">
+                </div>
+                <div class="form-group col-md-7">
                   <label>Display Name</label><br>
 
                   <input type="text" class="form-control" id="display_name" placeholder="Display Name" name="display_name" >
                   <span class="text-danger" id="display_nameerror"></span>
-                </div><br>
+                </div>
+              </div>
                 <div class="form-group">
                   <label>Description</label><br>
 
-                <textarea class="form-control" name="description" id="description" placeholder="Description"></textarea>
+                <textarea class="form-control" name="description" id="description" placeholder="Description about the role"></textarea>
                 <span class="text-danger" id="descriptionerror"></span>
 
                 </div>
-
+                <div class="form-group">
+                  <label>Permissions</label><br>
+                @foreach($permission as $permission)
+                <div class="form-check form-check-inline mr-3">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="{{$permission->id}}" name="permission[]"> {{$permission->name}}
+                        <span class="form-check-sign">
+                            <span class="check"></span>
+                        </span>
+                    </label>
+                </div>
+              @endforeach
+            </div>
 
               </div>
               <div class="modal-footer">
@@ -124,6 +139,9 @@ $(document).on('click','#addrole',function(){
   $('#rolemodal').modal('show');
   $('#add').show();
   $('#update').hide();
+  $('#name').val('');
+  $('#display_name').val('');
+  $('#description').val('');
 });
 $('#roleform').submit(function(e){
   e.preventDefault();

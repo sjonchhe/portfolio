@@ -29,6 +29,7 @@
           <p>User/Admin List</p>
         </a>
       </li> --}}
+      @role('superadministrator|administrator')
       <li class="nav-item text-white {{Request::is('admin/adminlist','admin/permission','admin/role')? "active": ""}}">
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="material-icons">people</i>
@@ -46,7 +47,7 @@
 
                 </ul>
             </li>
-
+  @endrole
       <li class="nav-item {{Request::is('admin/skill')? "active": ""}} ">
         <a class="nav-link" href="/admin/skill">
           <i class="material-icons">developer_mode</i>

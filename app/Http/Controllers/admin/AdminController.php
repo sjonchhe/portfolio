@@ -5,8 +5,9 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Role;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
 
 class AdminController extends Controller
@@ -16,17 +17,38 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('role:superadministrator|administrator');
+    }
     public function index()
     {
         //$users=User::all();
         // return view('backend.pages.adminlist')->withuser($users);
-        return view('backend.pages.adminlist');
+        $role=Role::all();
+        return view('backend.manage.adminlist')->withrole($role);
     }
 
     public function getAdmins(Datatables $datatables)
     {
       $users=User::all();
-      return Datatables::of($users)->make(true);
+      $role=Role::all();
+ 
+      //$role_user=$users->roles->pluck('id','id');
+      return Datatables::of($users)
+                    ->addColumn('role',function($users){
+                             $userid=$users->id;
+                        $roleuser=DB::table('role_user')->where('user_id',$userid)->pluck('role_id');
+                            $roletab=DB::table('roles')->where('id',$roleuser[0])->pluck('name');
+                        return '<span class="badge badge-pill badge-light text-capitalize">'.$roletab[0].'</span>';
+                       })
+                    ->addColumn('delete',function($users){
+                        return '<button class="btn btn-danger btn-sm deleteadmin" data-id="'.$users->id.'">Delete</button>';
+                    })
+
+               
+                    ->rawColumns(['role','delete'])
+                    ->make(true);
     }
 
     /**
@@ -64,6 +86,8 @@ class AdminController extends Controller
     else {
       $output="error";
     }
+    $roleid=$request->role;
+    $user->attachRole($roleid);
       return compact('output');
 
     }
@@ -110,6 +134,9 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $users=User::find($id);
+        $users->delete();
+        $output='deleted';
+        return compact('output');
+            }
 }
