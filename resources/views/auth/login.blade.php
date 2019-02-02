@@ -57,11 +57,25 @@
                                     {{ __('Login') }}
                                 </button>
 
+                                
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                                <br>
+                                or Login with Social Profiles
+                                <br>
+                                <a href="login/facebook" class="btn btn-outline-primary ">
+                                   <i class="fa fa-github"></i> Facebook
+                                </a>
+                             
+                                <a href="login/google" class="btn btn-outline-danger">
+                                   <i class="fa fa-google"></i> Google
+                                </a>
+                                <a href="login/github" class="btn btn-outline-secondary">
+                                   <i class="fa fa-github"></i>Github
+                                </a>
                             </div>
                         </div>
                     </form>
