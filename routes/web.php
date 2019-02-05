@@ -51,4 +51,6 @@ Route::resource('message','MessageController');
 Route::resource('blog','BlogController');
 Route::resource('dashboard','IndexController');
 
+Route::post('sendmail','MailController@send');
+
 });

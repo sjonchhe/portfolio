@@ -123,7 +123,7 @@
             {{-- <h6 class="card-category">CEO / Co-Founder</h6> --}}
             <h4 class="card-title">{{$data->firstname}} {{$data->middlename}} {{$data->lastname}}</h4>
             <p class="card-description">
-              {{$data->about}}
+              {!!$data->about!!}
             </p>
             <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
           </div>

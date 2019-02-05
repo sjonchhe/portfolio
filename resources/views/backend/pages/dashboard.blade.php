@@ -176,7 +176,7 @@
           <div class="row">
             <div class="col-lg-6 col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
+                <div class="card-header card-header-warning">
                   <h4 class="card-title">Project Stats</h4>
                   <p class="card-category">Latest Projects</p>
                 </div>
@@ -200,6 +200,35 @@
                 </div>
               </div>
             </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Quick Email</h4>
+                  <p class="card-category"></p>
+                </div>
+                <form action="sendmail" method="POST">
+                  {{csrf_field()}}
+                <div class="card-body table-responsive">
+                  <div class="form-group">
+                    <label for="exampleFormControlInput1">Email address</label>
+                    <input type="email" class="form-control" name="to" placeholder="example@abc.com">
+                 </div>
+                   <div class="form-group">
+                    <label for="exampleFormControlInput1">Subject</label>
+                    <input type="text" class="form-control" name="subject" placeholder="Subject of the email">
+                 </div>
+                 <div class="form-group">
+                    <label for="content">Email Content</label><br>  
+                    <textarea class="form-control" id="email" name="message" ></textarea>
+                  </div>
+                    <button type="submit" class="btn btn-primary right">Send Email</button>
+
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-lg-6 col-md-12">
               <div class="card">
                 <div class="card-header card-header-tabs card-header-warning">
@@ -449,4 +478,9 @@
 </div>
 </div>
 
+@endsection
+@section('scripts')
+<script type="text/javascript">
+   CKEDITOR.replace( 'email' );
+</script>
 @endsection

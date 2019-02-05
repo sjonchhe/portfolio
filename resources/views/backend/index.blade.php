@@ -8,6 +8,7 @@
     <div class="main-panel">
       @include('backend.include.navbar')
       <div class="content">
+        @include('backend.include.message')
         <div class="container-fluid">
           @yield('main-content')
         </div>

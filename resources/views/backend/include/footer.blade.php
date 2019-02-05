@@ -119,7 +119,6 @@
 
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 {{-- <script type="text/javascript" src="{{asset('js/lightbox-plus-jquery.min.js')}}"> --}}
 
