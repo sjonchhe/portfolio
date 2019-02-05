@@ -220,31 +220,38 @@
 
     $(document).on('click','.deleteproject',function(e){
      e.preventDefault();
-     var id=$(this).data(id);
+     var id=$(this).data('id');
      var route='project/'+id;
      var table='#projecttable';
      var token='{{csrf_token()}}';
-     deleteproject(id,route,table,token);
+     deleteproject(route,table,token);
     });
 
-    function deleteproject(id,route,table,token)
+    function deleteproject(route,table,token)
     {
       $.ajax({
       url:route,
-      method:'Delete',
+      method:'DELETE',
       data:{'_token':token},
       dataType:'json',
       success:function(data){
         console.log(data);
           if(data.output=="deleted")
        {
-         toastr.success('Skill has been deleted!!', 'Successfully Deleted!', {timeOut: 5000})
+        toastr.success('Project has been deleted!!', 'Successfully Deleted!', {timeOut: 5000})
          $(table).DataTable().ajax.reload();
        }
+       if(data.output=='missing')
+       {
+        toastr.warning('File missing!!', 'Error in deletion!', {timeOut: 5000})
+        /* $(table).DataTable().ajax.reload();*/
+       }
 
-      }
+      },
     });
     }
+
+
 
   </script>
 

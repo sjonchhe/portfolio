@@ -40,6 +40,7 @@ Route::resource('project','ProjectController');
 Route::get('getproject','ProjectController@getProjects')->name('get.projects');
 Route::get('project/view/{id}','ProjectController@show');
 Route::post('image-submit','ProjectController@imagestore');
+Route::post('singledelete','ProjectController@singledelete')->name('project.imagedelete');
 
 Route::resource('adminlist','AdminController');
 Route::get('getadmin','AdminController@getAdmins')->name('get.admins');

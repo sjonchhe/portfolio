@@ -156,17 +156,23 @@
 <div class="row">
   <div class="card bg-stransparent col-md-12">
     <div class="card-header card-header-primary">
-      <h4 class="card-title text-white"><b>Project Images/Gallery</b></h4>
+      <h4 class="card-title text-white"><b>Project Images/Gallery</b>
+    <form action="{{route('project.imagedelete')}}" method="POST" class="d-inline-block">
+    {{csrf_field()}}
+      <button class="btn btn-sm btn-danger" id="selecteddel" style="display:none;" onsubmit="return confirm('Are you sure you want to delete??')">Delete Selected</button>
+     </h4>
     </div>
     <div class="row mt-3">
     @foreach($photo as $photo)
       <div class="col-md-3 mt-3">
-        <input type="checkbox" style="position:absolute;right:20px;">
+        <input type="checkbox" id="checkbox" name="image[]" value="{{$photo->id}}" style="position:absolute;right:30px;z-index:20;">
         <a href="{{asset('uploads/projectimages/'.$photo->image)}}" data-lightbox="gallery" style="display:inline-block;" >
       <img src="{{asset('uploads/projectimages/'.$photo->image)}}" class="col-md-12" style="height:130px;display:inline-block;"></a>
     </div>
 
     @endforeach
+        </form>
+
 </div>
   </div>
 </div>
@@ -199,6 +205,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/themes/fa/theme.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+
+  $(document).on('click','#checkbox',function(){
+    $('#selecteddel').show();
+
+  })
+
+  </script>
   <script type="text/javascript">
       $("#file-1").fileinput({
 

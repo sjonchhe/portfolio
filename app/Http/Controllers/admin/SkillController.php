@@ -73,6 +73,7 @@ class SkillController extends Controller
       $skill -> percentage = $request -> percentage;
       $skill -> save();
       $output="inserted";
+
      // toastr()->success('Data has been saved successfully!');
       return compact('output');
 
@@ -130,8 +131,9 @@ class SkillController extends Controller
       // return "hello";
       // die;
         $skill = Skill::find($id);
-        $skill -> delete();
-        $output="deleted";
+      $skill -> delete();
+
+        $output='deleted';
         return compact('output');
 
     }

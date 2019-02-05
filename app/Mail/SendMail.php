@@ -29,6 +29,9 @@ class SendMail extends Mailable
      */
     public function build(request $request)
     {
-        return $this->view('backend.email.normalmail',['msg'=>$request->message])->from('sandeshjon@gmail.com','sjonchhe')->to($request->to)->subject($request->subject);
+        return $this->view('backend.email.normalmail',['msg'=>$request->message])
+                    ->from('sandeshjon@gmail.com','sjonchhe')
+                    ->to($request->to)
+                    ->subject($request->subject);
     }
 }

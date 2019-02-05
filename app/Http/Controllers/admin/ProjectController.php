@@ -11,6 +11,8 @@ use Session;
 use File;
 use Storage;
 use App\Model\Photo;
+use Mail;
+use App\Mail\newProject; 
 
 class ProjectController extends Controller
 {
@@ -35,7 +37,7 @@ class ProjectController extends Controller
         return '<a href="/admin/project/view/'.$project->id.'"><button class="btn btn-sm btn-primary viewproject">View</button></a>';
       })
     ->addColumn('delete',function($project){
-        return '<button class="btn btn-sm btn-danger deleteproject" data-id="'.$project->id.'">Delete</button>';
+        return '<button class="btn btn-sm btn-danger deleteproject" data-id="'.$project->id.'" onsubmit="return confirm(Are you sure you want to delete??)">Delete</button>';
       })
       ->addColumn('views',function($project){
         return '<span class="badge badge-pill badge-light">'.$project->views.'</span>';
@@ -100,7 +102,20 @@ class ProjectController extends Controller
   {
     $project->image= "image.jpg";
   }
+
+
   $project->save();
+
+    $data=[
+      'title' => $request->title,
+      'client' => $request->client,
+      'description' => $request->description,
+      'contribution' => $request->contribution,
+      'status' => $request->status,
+ 
+    ];
+    Mail::send(new newProject($data));
+
   // Session::flash('success','New Project Successfully added');
   // return redirect('admin/projects');
   $output="inserted";
@@ -218,11 +233,72 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        $project=Project::find($id);
-        $project-> delete();
+        $project=Project::find($id);  
+        $image=$project->image;
+        $location=public_path('uploads/projects/'.$image);
+        if(File::exists($location))
+        {
+          $delete=File::delete($location);
         
-        $output="deleted";
-        return compact('output');
+          if($delete)
+          {
+            $projectimages=Photo::where('project_id',$id)->get();
+            foreach($projectimages as $images)
+            {
+              $locations=public_path('uploads/projectimages/'.$images->image);
+              $deleteimages=File::delete($locations);
+              $images->delete();
+
+            }
+          }
+          $deleted=$project->delete();
+          $output='deleted';
+      
+        }
+        else
+        {
+          $output='missing';
+        }
+
+
+          return compact('output'); 
+        
+       
+    }
+
+    public function singledelete(request $request)
+    {
+   
+      if(isset($request->image))
+      {
+        foreach($request->image as $image)
+        {
+          $image=Photo::find($image);
+          $imagename=$image->image;
+          $image_path=public_path('uploads/projectimages/'.$imagename);
+          if(File::exists($image_path))
+          {
+            $deleteimg=File::delete($image_path);
+            if($deleteimg)
+            {
+              $image->delete();
+              $status='Image removed successfully';
+            }
+          }
+          else
+          {
+            $status='File doesnt exist';
+          }
+
+        }
+
+      }
+      else{
+          $status= "Please choose some file to delete";
+
+      }
+    return back()->with('success',$status);
+      
     }
 
 }
