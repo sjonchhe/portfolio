@@ -77,8 +77,9 @@ class AdminController extends Controller
         $password=$request-> password;
         $user= new User();
       $user-> name=$request-> username;
-      $user-> email=$request-> email;
+      $user-> email=$request-> email; 
       $user-> password=Hash::make($password);
+      $user->provider = "website";
       if($user->save())
       {
       $output="inserted";

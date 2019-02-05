@@ -27,6 +27,7 @@
                   Email
                 </th>
                 <th>Role</th>
+                <th>Via</th>
                 <th>
                   Created At
                 </th>
@@ -121,6 +122,7 @@ $(document).ready(function () {
       {'data' : 'name'},
       {'data' : 'email'},
       {'data' : 'role'},
+      {'data' : 'provider'},  
       {'data' : 'created_at'},
       {'data' : 'delete'}
     ]
