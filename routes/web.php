@@ -15,7 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
@@ -25,6 +26,7 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 
 // Route::group(['prefix'=>'admin'],function(){
   // Route::prefix('admin')->middleware('role:superadministrator|administrator|editor|subscriber')->group(function(){
+Route::group(['middleware'=>'verified'],function(){
   Route::group( [
            'prefix'     => 'admin',
            // 'as'         => 'dashboard.',
@@ -54,4 +56,5 @@ Route::resource('dashboard','IndexController');
 
 Route::post('sendmail','MailController@send');
 
+});
 });
