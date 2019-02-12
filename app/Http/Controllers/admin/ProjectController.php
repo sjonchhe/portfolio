@@ -21,6 +21,10 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+      public function __construct()
+    {
+        $this->middleware('role:superadministrator')->except('index','getProjects');
+    }
     public function index()
     {
         return view('backend.pages.project');

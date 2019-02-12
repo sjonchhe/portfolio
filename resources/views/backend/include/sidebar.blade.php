@@ -48,6 +48,18 @@
                 </ul>
             </li>
   @endrole
+  <li class="nav-item {{Request::is('admin/education')? "active": ""}} ">
+        <a class="nav-link" href="/admin/education">
+          <i class="material-icons">local_library</i>
+          <p>Education</p>
+        </a>
+      </li>
+      <li class="nav-item {{Request::is('admin/experience')? "active": ""}} ">
+        <a class="nav-link" href="/admin/experience">
+          <i class="material-icons">card_travel</i>
+          <p>Experience</p>
+        </a>
+      </li>
       <li class="nav-item {{Request::is('admin/skill')? "active": ""}} ">
         <a class="nav-link" href="/admin/skill">
           <i class="material-icons">developer_mode</i>
@@ -61,19 +73,25 @@
           <p>Projects</p>
         </a>
       </li>
+      <li class="nav-item {{Request::segment(2)=='blog'? "active" : "" }}">
+        <a class="nav-link" href="/admin/blog">
+          <i class="material-icons">subtitles</i>
+          <p>Blogs</p>
+        </a>
+      </li>
 
       <li class="nav-item {{Request::is('admin/testimonial') ? "active" : ""}} ">
         <a class="nav-link" href="/admin/testimonial">
-          <i class="material-icons">feedback</i>
+          <i class="material-icons">rate_review</i>
           <p>Testimonials</p>
         </a>
       </li>
-      <li class="nav-item {{Request::is('admin/message') ? "active" : ""}}">
+      <!-- <li class="nav-item {{Request::is('admin/message') ? "active" : ""}}">
         <a class="nav-link" href="/admin/message">
           <i class="material-icons">send</i>
           <p>Messages</p>
         </a>
-      </li>
+      </li> -->
       <!-- <li class="nav-item active-pro ">
             <a class="nav-link" href="./upgrade.html">
                 <i class="material-icons">unarchive</i>

@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Blog;
+use App\Model\Education;
+use App\Model\Experience;
+use App\Model\Portfolio;
 use App\Model\Project;
 use App\Model\Skill;
-use App\Model\Portfolio;
-use App\User;
+use App\Model\Testimonial;
 use App\Role;
+use App\User;
+use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
@@ -23,12 +27,20 @@ class IndexController extends Controller
         $projectc=Project::count();
         $userc=User::count();
         $rolec=Role::count();
+        $blogc=Blog::count();
+        $testimonialc=Testimonial::count();
+        $educationc=Education::count();
+        $experiencec=Experience::count();
         $projects=Project::latest('id')->limit(5)->get();
         return view('backend.pages.dashboard')->withskillcount($skillc)
                                               ->withprojectcount($projectc)
                                               ->withusercount($userc)
                                               ->withrolecount($rolec)
-                                              ->withprojects($projects);
+                                              ->withprojects($projects)
+                                              ->withblogcount($blogc)
+                                              ->withEducationcount($educationc)
+                                              ->withexperiencecount($experiencec)
+                                              ->withtestimonialcount($testimonialc);
     }
 
     /**
@@ -36,6 +48,12 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function generateCv()
+    {
+
+    }
+
     public function create()
     {
         //

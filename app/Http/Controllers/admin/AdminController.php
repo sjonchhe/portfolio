@@ -112,7 +112,10 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=User::find($id);
+        $role=Role::all();
+        return view('backend.pages.profile')->withuser($user)->withrole($role);
+
     }
 
     /**
@@ -124,7 +127,28 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    $this->validate($request,[
+          'username'=> 'required',
+          'email'=>'required',
+          
+        ]);
+        $user= User::find($id);
+      $user-> name=$request-> username;
+      $user-> email=$request-> email; 
+     
+      if($user->save())
+      {
+      $output="inserted";
+    }
+    else {
+      $output="error";
+    }
+    /*$roleid=$request->role;
+    $user->attachRole($roleid);*/
+     /* return compact('output');*/
+
+     return back();
+
     }
 
     /**

@@ -23,6 +23,10 @@ input
 {
   color:white;
 }
+.text-black
+{
+  color:black;
+}
 .card
 {
   padding:15px;
@@ -57,14 +61,14 @@ input
   border-color:teal;
 }
 
-#skilltable tr,#projecttable tr,#admintable tr
+#skilltable tr,#projecttable tr,#admintable tr,#blogtable tr,#educationtable tr,#experiencetable tr,#testimonialtable tr
 {
   background:rgba(0,0,0,0);
   color:white !important;
 }
-.table-official tr
+.table-official tr td
 {
-  background:rgba(0,0,0,0);
+  background:rgba(0,0,0,0) !important;
   color:white !important;
 }
 #modaltitle

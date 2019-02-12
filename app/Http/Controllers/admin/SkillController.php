@@ -16,6 +16,10 @@ class SkillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+      public function __construct()
+    {
+        $this->middleware('role:superadministrator')->except('index','getSkills');
+    }
     public function index()
     {
         // $skill=Skill::all();

@@ -3,6 +3,38 @@
 <div class="row">
   <div class="col-md-12">
           <div class="row">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">local_library</i>
+                  </div>
+                  <p class="card-category">Education</p>
+                  <h3 class="card-title">{{$educationcount}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">remove_red_eye</i> All time
+                  </div>
+                </div>
+              </div>
+            </div>
+             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">card_travel</i>
+                  </div>
+                  <p class="card-category">Experience</p>
+                  <h3 class="card-title">{{$experiencecount}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">remove_red_eye</i> All time
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 " >
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
@@ -38,7 +70,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+             
+            <!-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-secondary card-header-icon">
                   <div class="card-icon">
@@ -53,16 +86,16 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-primary card-header-icon">
                   <div class="card-icon">
-                   <i class="material-icons">feedback</i>
+                   <i class="material-icons">rate_review</i>
                   </div>
                   <p class="card-category">Testimonial</p>
-                  <h3 class="card-title">15</h3>
+                  <h3 class="card-title">{{$testimonialcount}}</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -75,10 +108,10 @@
               <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                     <i class="material-icons">border_color</i>               
+                     <i class="material-icons">subtitles</i>               
                  </div>
                   <p class="card-category">Blogs</p>
-                  <h3 class="card-title">15</h3>
+                  <h3 class="card-title">{{$blogcount}}</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -90,7 +123,7 @@
             @role('superadministrator|administrator')
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
+                <div class="card-header card-header-danger card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">people</i>
                   </div>
@@ -106,7 +139,7 @@
             </div>
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
+                <div class="card-header card-header-danger card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">lock_open</i>
                   </div>

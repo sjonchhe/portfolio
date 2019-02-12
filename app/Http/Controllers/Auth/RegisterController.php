@@ -68,9 +68,9 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'provider' => "website",
+            'provider' => "Register page",
         ]);
-        $user->attachRole(Role::where('name','administrator')->first());
+        $user->attachRole(Role::where('name','user')->first());
         return $user;
     }
 }

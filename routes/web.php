@@ -31,8 +31,9 @@ Route::group(['middleware'=>'verified'],function(){
            'prefix'     => 'admin',
            // 'as'         => 'dashboard.',
            'namespace'  => 'admin',
-           'middleware' => 'role:superadministrator|administrator|editor|subscriber'
+           'middleware' => 'role:superadministrator|administrator|editor|user'
        ], function () {
+
 
 Route::resource('skill','SkillController');
 Route::get('getskill','SkillController@getSkills')->name('get.skills');
@@ -52,9 +53,23 @@ Route::resource('role','RoleController');
 
 Route::resource('message','MessageController');
 Route::resource('blog','BlogController');
+Route::get('getblogs','BlogController@getBlogs')->name('get.blogs');
+
 Route::resource('dashboard','IndexController');
+Route::get('generatecv','IndexController@generateCv')->name('generatecv');
 
 Route::post('sendmail','MailController@send');
+
+Route::resource('testimonial','TestimonialController');
+Route::get('gettestimonial','TestimonialController@getTestimonials')->name('get.testimonials');
+
+Route::resource('experience','ExperienceController');
+Route::get('getexperience','ExperienceController@getExperiences')->name('get.experiences');
+
+Route::resource('education','EducationController');
+Route::get('geteducation','EducationController@getEducations')->name('get.educations');
+
+
 
 });
 });

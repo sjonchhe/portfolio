@@ -77,7 +77,7 @@ class LoginController extends Controller
         ]);
 
     //Adding default role
-    $user->attachRole(Role::where('name','administrator')->first());
+    $user->attachRole(Role::where('name','user')->first());
    
     }
         //login the user
