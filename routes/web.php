@@ -34,11 +34,15 @@ Route::group(['middleware'=>'verified'],function(){
            'middleware' => 'role:superadministrator|administrator|editor|user'
        ], function () {
 
+Route::resource('dashboard','IndexController');
+Route::get('generatecv','IndexController@generateCv')->name('generatecv');
+Route::get('','IndexController@index');
 
 Route::resource('skill','SkillController');
 Route::get('getskill','SkillController@getSkills')->name('get.skills');
 //Route::post('deleteskill/{id}','SkillController@destroy');
 Route::resource('portfolio','PortfolioController');
+
 Route::resource('project','ProjectController');
 Route::get('getproject','ProjectController@getProjects')->name('get.projects');
 Route::get('project/view/{id}','ProjectController@show');
@@ -54,9 +58,6 @@ Route::resource('role','RoleController');
 Route::resource('message','MessageController');
 Route::resource('blog','BlogController');
 Route::get('getblogs','BlogController@getBlogs')->name('get.blogs');
-
-Route::resource('dashboard','IndexController');
-Route::get('generatecv','IndexController@generateCv')->name('generatecv');
 
 Route::post('sendmail','MailController@send');
 

@@ -78,6 +78,8 @@ $(document).on('click','.deleteblog',function(e){
 
 function deleteblog(id,table,token,route)
 {
+ if (confirm('Are you sure you want to delete this?')) {
+ 
   $.ajax({
     url:route,
     method:'DELETE',
@@ -93,6 +95,7 @@ function deleteblog(id,table,token,route)
     }
   })
 
+}
 }
 </script>
 @endsection

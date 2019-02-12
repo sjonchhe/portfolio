@@ -16,7 +16,7 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-hover" id="projecttable">
+            <table class="table table-hover text-center" id="projecttable">
               <thead class=" text-primary">
                 <th>Id</th>
                 <th>Title</th>
@@ -24,10 +24,10 @@
                 <th>Date</th>
                 <th>Contribution</th>
                 <th>Link</th>
+                <th>Status</th>
                 <th>Views</th>
-                <th></th>
-                <th></th>
-
+                <th>Action</th>
+              
                 {{-- <th>Action</th> --}}
               </thead>
 
@@ -159,11 +159,9 @@
         {'data': 'date'},
         {'data': 'contribution'},
         {'data': 'link'},
+        {'data': 'status'},
         {'data': 'views'},
-        {'data':'view'},
-        {'data':'delete'}
-
-
+        {'data':'action'},
 
 
       ]
@@ -229,6 +227,9 @@
 
     function deleteproject(route,table,token)
     {
+
+ if (confirm('Are you sure you want to delete this?')) {
+
       $.ajax({
       url:route,
       method:'DELETE',
@@ -250,6 +251,7 @@
       },
     });
     }
+  }
 
 
 

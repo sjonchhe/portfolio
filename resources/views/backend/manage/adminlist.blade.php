@@ -192,6 +192,8 @@ $(document).on('click','.deleteadmin',function(e){
 
 function deletefunction(id,route,table,token)
 {
+if (confirm('Are you sure you want to delete this?')) {
+
   $.ajax({
     url: route,
     method:'Delete',
@@ -210,7 +212,7 @@ function deletefunction(id,route,table,token)
   });
 
   
-
+}
 }
 
 

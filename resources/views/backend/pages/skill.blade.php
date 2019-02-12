@@ -117,7 +117,10 @@
     $('#update').hide();
     $('#skillname').val('');
     $('#percentage').val('');
-    //$('#skillform')[0].reset();
+    // $('#skillform')[0].reset();
+    $('#newid').val('');
+        //$("#skillform").find('input:text, input:password, input:file, select, textarea').val('');
+
   })
   $(document).on('click','.editskill',function(){
   let skill=$(this).data('skill');
@@ -157,6 +160,8 @@
     //alert('here');
     //alert(id);
     //alert(route);
+ if (confirm('Are you sure you want to delete this?')) {
+   
    $.ajax({
      url:route,
      method:'DELETE',
@@ -176,6 +181,7 @@
  }
    })
  }
+}
 
   $('#skillform').submit(function(e){
     e.preventDefault();

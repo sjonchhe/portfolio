@@ -4,7 +4,7 @@
     <div class="navbar-wrapper">
       <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
             <a class="btn btn-sm btn-primary" href="generatecv">Download My CV</a>
-
+@role('user') <badge class="badge badge-danger ml-3 ">*You donot have permission to add/edit/delete </badge> @endrole
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
       <span class="sr-only">Toggle navigation</span>

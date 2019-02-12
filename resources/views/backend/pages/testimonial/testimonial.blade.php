@@ -149,6 +149,8 @@
     $('#update').hide();
     $('#status').val('1');
     $('#statusdis').hide(); 
+        $('#newid').val('');
+
       $("#testimonialform").find('input:text, input:password, input:file, select, textarea').val('');
 
   })
@@ -190,6 +192,8 @@
     //alert('here');
     //alert(id);
     //alert(route);
+ if (confirm('Are you sure you want to delete this?')) {
+
    $.ajax({
      url:route,
      method:'DELETE',
@@ -209,7 +213,7 @@
  }
    })
  }
-
+}
   $('#testimonialform').submit(function(e){
     e.preventDefault();
     var form=$(this);

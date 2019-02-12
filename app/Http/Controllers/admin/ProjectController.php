@@ -37,16 +37,26 @@ class ProjectController extends Controller
       ->addColumn('link',function($project){
         return '<a href="http://'.$project->link1.'" target="_blank">'.$project->link1.'</a>';
       })
-      ->addColumn('view',function($project){
-        return '<a href="/admin/project/view/'.$project->id.'"><button class="btn btn-sm btn-primary viewproject">View</button></a>';
-      })
-    ->addColumn('delete',function($project){
-        return '<button class="btn btn-sm btn-danger deleteproject" data-id="'.$project->id.'" onsubmit="return confirm(Are you sure you want to delete??)">Delete</button>';
+     
+      ->addColumn('status',function($blogs){
+                                       
+                                        if($blogs->status=='0')
+                                        {
+                                            return '<badge class="badge badge-danger p-1">Hidden</badge>';    
+                                        }
+                                        else
+                                        {
+                                            return '<badge class="badge badge-success p-1">Shown</badge>';
+                                        }
+                                        
+                                    })
+    ->addColumn('action',function($project){
+        return '<a href="/admin/project/view/'.$project->id.'"><button class="btn btn-sm btn-primary viewproject">View</button></a><button class="btn btn-sm btn-danger deleteproject" data-id="'.$project->id.'" onsubmit="return confirm(Are you sure you want to delete??)">Delete</button>';
       })
       ->addColumn('views',function($project){
         return '<span class="badge badge-pill badge-light">'.$project->views.'</span>';
       })
-      ->rawColumns(['link','view','views','delete'])
+      ->rawColumns(['link','view','views','action','status'])
       ->make(true);
       }
 

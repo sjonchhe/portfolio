@@ -197,6 +197,8 @@ $(document).on('click','.deleterole',function(e){
 });
 function deleterole(id,route,table,token)
 {
+ if (confirm('Are you sure you want to delete this?')) {
+
   $.ajax({
     url:route,
     method:'Delete',
@@ -211,6 +213,7 @@ function deleterole(id,route,table,token)
       }
     }
   })
+}
 }
 </script>
 

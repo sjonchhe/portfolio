@@ -184,6 +184,8 @@ $(function () {
     $('#modaltitle').text('Add new Education');
     $('#add').show();
     $('#update').hide();
+        $('#newid').val('');
+
     $("#educationform").find('input:text, input:password, input:file, select, textarea').val('');
 
    /* $('#skillname').val('');
@@ -283,14 +285,14 @@ function addeditfunction(id,url,formData,table,modal)
 
 
 $(document).on('click','.deleteeducation',function(e){
+
    e.preventDefault();
 
    var id=$(this).data('id');
    var route='education/'+id;
    var table='#educationtable';
    var token = "{{csrf_token()}}";
-/*   confirm("Are you sure you want to delete??");
-*/
+
    // var method='POST';
    // var formData = new FormData($(this)[0]);
 
@@ -305,6 +307,7 @@ $(document).on('click','.deleteeducation',function(e){
     //alert('here');
     //alert(id);
     //alert(route);
+if (confirm('Are you sure you want to delete this?')) {
    $.ajax({
      url:route,
      method:'DELETE',
@@ -324,6 +327,7 @@ $(document).on('click','.deleteeducation',function(e){
  }
    })
  }
+}
 
 
  </script>

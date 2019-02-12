@@ -162,6 +162,8 @@
     $('#modaltitle').text('Add new experience');
     $('#add').show();
     $('#update').hide();
+        $('#newid').val('');
+
     $("#experienceform").find('input:text, input:password, input:file, select, textarea').val('');
     
     })
@@ -273,9 +275,8 @@ $(document).on('click','.deleteexperience',function(e){
 
 function deleteexperience(id,route,table,token)
 {
-      //alert('here');
-      //alert(id);
-      //alert(route);
+  if (confirm('Are you sure you want to delete this?')) {
+
       $.ajax({
        url:route,
        method:'DELETE',
@@ -286,7 +287,7 @@ function deleteexperience(id,route,table,token)
          console.log(data);
          if(data.output=="deleted")
          {
-           toastr.success('experience has been deleted!!', 'Successfully Deleted!', {timeOut: 5000})
+           toastr.success('Experience has been deleted!!', 'Successfully Deleted!', {timeOut: 5000})
            $(table).DataTable().ajax.reload();
          }
        },
@@ -295,7 +296,7 @@ function deleteexperience(id,route,table,token)
        }
      })
     }
-
+}
 
   </script>
 

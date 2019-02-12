@@ -8,8 +8,8 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header card-header-primary" id="portfoliodiv">
-          <h4 class="card-title">Edit Profile @role('editor') <span class="text-danger">*You donot have permission to edit this</span> @endrole</h4>
-          <p class="card-category">Complete your profile</p>
+          <h4 class="card-title">Edit Portfolio @role('user') <span class="text-danger">*You donot have permission to edit this</span> @endrole</h4>
+          <p class="card-category">Complete the portfolio</p>
         </div>
         @foreach($portfolio as $data)
           <div class="card-body" >

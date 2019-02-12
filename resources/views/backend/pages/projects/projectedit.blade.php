@@ -39,7 +39,7 @@
           <div class="form-row">
             <div class="form-group col-md-7">
               <label for="link1">Project Link</label>
-              <input type="text" class="form-control" id="link1" placeholder="link" name="link1"  required value="{{$project->link1}}" >
+              <input type="text" class="form-control" id="link1" placeholder="link" name="link1"   value="{{$project->link1}}" >
             </div>
             <div class="form-group col-md-5">
               <label for="link1">Any other Link</label>

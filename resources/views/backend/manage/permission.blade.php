@@ -231,6 +231,8 @@ deletefunction(id,route,table,token);
 function deletefunction(id,route,table,token)
 {
   // alert('down under');
+if (confirm('Are you sure you want to delete this?')) {
+
   $.ajax({
     url:route,
     method:'Delete',
@@ -247,6 +249,7 @@ function deletefunction(id,route,table,token)
       }
     }
   });
+}
 }
 
 
